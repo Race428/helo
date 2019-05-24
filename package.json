@@ -36,5 +36,5 @@
     ]
   },
   "main": "server/index.js",
-  "proxey": "http://localhost:4321"
+  "proxy": "http://localhost:4321"
 }

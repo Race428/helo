@@ -1,21 +1,22 @@
 const express = require('express')
-const app = express()
 
 require('dotenv').config()
 
-const ctrl = require('./controller')
+
+const app = express()
 
 const massive = require('massive')
 
 const port = 4321
 
-const { CONNECTION_STRING } = process.env
+const ctrl = require('./controller')
+const { CONNECTION_STRING , SERVER_PORT } = process.env
 
 
 app.use(express.json())
 
-app.listen(port, () => {
-    console.log('Listening on ', port)
+app.listen(SERVER_PORT, () => {
+    console.log('Listening on ', SERVER_PORT)
 })
 
 
@@ -27,7 +28,9 @@ massive(CONNECTION_STRING).then((database) => {
 
 
 
-app.post('/api/auth/register', ctrl.register)
+app.post('/auth/register', ctrl.Register)
+app.post('/auth/login', ctrl.Login)
+
 
 //Write a POST endpoint in your server for registering.
 // The endpoint should pull the username and password off of the body.
