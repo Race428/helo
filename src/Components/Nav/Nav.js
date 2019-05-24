@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link , withRouter} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 class Nav extends Component {
@@ -45,11 +45,11 @@ class Nav extends Component {
 }
 const mapStateToProps = (reduxState) => {
   const {
-    username, password, profile_pic } = reduxState
+    userObj } = reduxState
   return {
-    username, password, profile_pic
+    userObj
   }
 }
-export default connect(mapStateToProps)(withRouter(Nav))
+export default connect(mapStateToProps)(Nav)
 
 

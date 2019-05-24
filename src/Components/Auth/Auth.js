@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import  {connect } from 'react-redux'
+import updateUserDetails from '../../Redux/reducer'
 
-export default class Auth extends Component {
 
-    constructor(props) {
-        super(props)
+
+
+ class Auth extends Component {
+
+    constructor() {
+        super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            profile_pic:''
         }
     }
 
@@ -25,21 +31,25 @@ export default class Auth extends Component {
             username: this.state.username,
             password: this.state.password
         }).then((res) => { 
+            this.props.updateUserDetails()
+
             console.log(res.data)
+            this.props.history.push('/home')
         })
-        this.props.history.push('/home')
     }
 
 
     login = (req, res ) => { 
+        console.log(this.state)
         axios.post('/auth/login', {
             username: this.state.username,
             password: this.state.password
         }).then((res) => { 
-            console.log(res.data)
+            console.log(res)
 
+            // this.props.updateUserDetails(res)
+            this.props.history.push('/home')
         })
-        this.props.history.push('/home')
     }
     render() {
         return (
@@ -56,3 +66,6 @@ export default class Auth extends Component {
         )
     }
 }
+
+
+export default connect(null, {updateUserDetails})(Auth)
