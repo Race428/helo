@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 
 class Nav extends Component {
@@ -10,19 +10,28 @@ class Nav extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: this.props.username,
-            password: this.props.password,
-            profile_pic: this.props.profile_pic
+           userObj: this.props.userObj
         }
-        console.log(props)
+        console.log('they there! ',props)
     }
 
+  
 
     render() {
 
         return (
+<>
+            {
+            this.props.location.pathname === '/'
+            ? 
+            null
+            :
 
             <div>
+                <h1>{this.props.userObj.username}</h1>
+                <h1>{this.props.userObj.profile_pic}</h1>
+
+
 
                 <Link to='/dashboard'>
                     <button>Home</button>
@@ -38,18 +47,20 @@ class Nav extends Component {
                 </Link>
 
 
-
-            </div>
+                </div>
+            }
+                </>
         )
     }
 }
 const mapStateToProps = (reduxState) => {
-  const {
-    userObj } = reduxState
+    console.log(reduxState)
+  const {userObj}= reduxState
+  console.log(typeof userObj)
   return {
     userObj
   }
 }
-export default connect(mapStateToProps)(Nav)
+export default connect(mapStateToProps)(withRouter(Nav))
 
 
