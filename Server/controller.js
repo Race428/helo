@@ -18,5 +18,21 @@ Login: async (req, res) => {
     const users = await db.login({username, password}).then((data) => {
         console.log('this is the data', data[0])
         res.status(200).send(data[0])})
+},
+
+getPosts: async (req, res) => { 
+    const db = req.app.get('db')
+    db.getAllPosts().then((data) => { 
+        res.status(200).send(data)
+    })
+},
+
+getNoUserPosts: async (req, res) => { 
+    const db = req.app.get('db')
+    console.log('this is the req', req )
+    const {user_id} = req.body
+    const posts = await db.getNoUserPosts({user_id}).then((data) => { 
+        res.status(200).send(data)
+    })
 }
 }
