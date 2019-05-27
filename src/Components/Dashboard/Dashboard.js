@@ -9,7 +9,8 @@ class Dashboard extends Component {
         this.state = {
             myPostsChecked: true,
             posts: [],
-            user_id: props.userObj.id
+            user_id: props.userObj.id,
+            search: ''
         }
     }
 
@@ -20,50 +21,69 @@ class Dashboard extends Component {
 
 
     async componentDidMount() {
-        if (this.state.myPostsChecked === true) {
-            await axios.get('/getposts').then(res => {
-                this.setState({
-                    posts: res.data
-                })
-            })
-        }
-        else {
-            const { user_id } = this.state
-            await axios.get('getnouserposts', { user_id }).then(res => {
-                this.setState({
-                    posts: res.data
-                })
-            })
-        }
 
-    }
-
-    myPostsChecked = () => {
-        this.setState({
-            myPostsChecked: !this.state.myPostsChecked
+        await  axios.get('/getposts').then(res => {
+            this.setState({
+                posts: res.data
+            })
         })
-        this.forceUpdate()
-        
-        // if (this.state.myPostsChecked === true) {
-        //      axios.get('/getposts').then(res => {
-        //         this.setState({
-        //             posts: res.data
-        //         })
-        //     })
-        // }
-        // else {
-        //     const { user_id } = this.state
-        //      axios.get('getnouserposts', { user_id }).then(res => {
-        //         this.setState({
-        //             posts: res.data
-        //         })
-        //     })
-        // }
     }
+        // if (this.state.myPostsChecked === false) {
+        //     const { user_id } = this.state
+        //    await  axios.get('/getnouserposts', { user_id }).then(res => {
+        //         this.setState({
+        //             posts: res.data
+        //         })
+        //     })
+        // }
 
-    render() {
-        const posts = this.state.posts.map((element) => {
-            return <div
+        // else {
+        //     if (this.state.myPostsChecked === true) {
+        //         await  axios.get('/getposts').then(res => {
+        //             this.setState({
+        //                 posts: res.data
+        //             })
+        //         })
+        //     }
+        // }
+        
+
+        myPostsChecked = () => {
+            this.setState({
+                myPostsChecked: !this.state.myPostsChecked
+            })
+      
+
+            // if (this.state.myPostsChecked === true) {
+            //      axios.get('/getposts').then(res => {
+            //         this.setState({
+            //             posts: res.data
+            //         })
+            //     })
+            // }
+            // else {
+            //     const { user_id } = this.state
+            //      axios.get('getnouserposts', { user_id }).then(res => {
+            //         this.setState({
+            //             posts: res.data
+            //         })
+            //     })
+            // }
+        }
+
+
+        searchChange(value){
+            this.setState({
+                search: value
+            })
+        }
+
+        render() {
+            
+            const posts = this.state.posts.filter((element) => {
+                return element.title.includes(this.state.search)
+            }).map((element) => { 
+                return   <div
                 key={element.id}>
                 {/* <img src={`${element.posts.profile_pic}`} alt='profile' /> */}
                 <h1>{element.username}</h1>
@@ -71,29 +91,34 @@ class Dashboard extends Component {
 
             </div>
         })
-        return (
-            <div>This is Dashboard
-            <input placeholder='search' />
-                <label> My Posts
+            
+                
+                
+              
+            return (
+                <div>This is Dashboard
+            <input onChange = {e => this.searchChange(e.target.value)}
+            placeholder='search' />
+                    <label> My Posts
             <input
-                        onClick={this.myPostsChecked}
-                        type='checkbox' checked={this.state.myPostsChecked} />
-                </label>
-                {posts}
+                            onClick={this.myPostsChecked}
+                            type='checkbox' checked={this.state.myPostsChecked} />
+                    </label>
+                    {posts}
 
 
-            </div>
-        )
+                </div>
+            )
+        }
     }
-}
 
 
-const mapStateToProps = (reduxState) => {
-    console.log(reduxState)
-    const { userObj } = reduxState
-    console.log(typeof userObj)
-    return {
-        userObj
+    const mapStateToProps = (reduxState) => {
+        console.log(reduxState)
+        const { userObj } = reduxState
+        console.log(typeof userObj)
+        return {
+            userObj
+        }
     }
-}
-export default connect(mapStateToProps)(Dashboard)
+    export default connect(mapStateToProps)(Dashboard)
