@@ -27,8 +27,9 @@ export default class Post  extends Component {
         const post = this.state.post.map((element, index) => { 
                 console.log(element)
             return <div>
+                <img src = {`${element.img}`} alt ='post pic'/> 
                 <h1>{element.title}</h1>
-            
+                <h1>{element.content}</h1>
             </div>
         })
         return(

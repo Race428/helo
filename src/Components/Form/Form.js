@@ -6,7 +6,16 @@ export default class Form extends Component {
 
     render() { 
         return(
-            <div>This is Form </div>
+            <div>
+            <label>Title:
+            <input placeholder = 'title'/>
+            </label>
+            <input placeholder = 'image URL '/>
+
+            <input placeholder = 'Content'/>
+
+
+            </div>
         )
     }
 }
