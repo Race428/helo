@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux'
+import './Dashboard.css'
+import {Link} from 'react-router-dom'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -9,7 +11,7 @@ class Dashboard extends Component {
         this.state = {
             myPostsChecked: true,
             posts: [],
-            user_id: props.userObj.id,
+            user_id: props.userObj.user_id,
             search: ''
         }
     }
@@ -56,14 +58,20 @@ class Dashboard extends Component {
                 console.log(element)
                 return element.title.includes(this.state.search)
             }).map((element) => {
-                return <div
-                    key={element.id}>
-                     <img src={`${element.profile_pic}`} alt='profile' />                    
-                    <h1>{element.profile_pic}</h1>
+                return<Link to={`/post/${element.post_id}`}>
+                 <div
+                    key={element.post_id}>
+                     <img
+                     id='profile-pic'
+                     src={`${element.profile_pic}`} alt='profile' />                    
+                    <h1>{element.username}</h1>                   
                     <h1>{element.title}</h1>
 
                 </div>
+                </Link>
+           
             })
+            console.log('hey there')
         }
 
         else {
@@ -71,14 +79,18 @@ class Dashboard extends Component {
                 console.log(element)
                 return element.title.includes(this.state.search)
             }).map((element) => {
-                if(element.author_id !== this.state.user_id){
-                return <div
-                    key={element.id}>
-                     <img src={`${element.profile_pic}`} alt='profile' />
+                if(element.author_id!== this.state.user_id){
+                return <Link to={`/post/${element.id}`}>
+                <div
+                    key={element.post_id}>
+                     <img 
+                     id='profile-pic'
+                     src={`${element.profile_pic}`} alt='profile' />
                     <h1>{element.username}</h1>
                     <h1>{element.title}</h1>
 
                 </div>
+                </Link>
             }})
             
             

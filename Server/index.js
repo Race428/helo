@@ -31,7 +31,7 @@ massive(CONNECTION_STRING).then((database) => {
 app.post('/auth/register', ctrl.Register)
 app.post('/auth/login', ctrl.Login)
 app.get('/getposts', ctrl.getPosts)
-app.get('/getnouserposts', ctrl.getNoUserPosts)
+
 
 
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
-
+import '../Dashboard/Dashboard.css'
 class Nav extends Component {
 
 
@@ -29,7 +29,10 @@ class Nav extends Component {
 
             <div>
                 <h1>{this.props.userObj.username}</h1>
-                <img src ={`${this.props.userObj.profile_pic}`} alt = 'profile' /> 
+                <img 
+                     id='profile-pic'
+                
+                src ={`${this.props.userObj.profile_pic}`} alt = 'profile' /> 
 
 
 

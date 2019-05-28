@@ -26,14 +26,7 @@ getPosts: async (req, res) => {
         console.log('this is the data',data)
         res.status(200).send(data)
     })
-},
-
-getNoUserPosts: async (req, res) => { 
-    const db = req.app.get('db')
-    console.log('this is the req', req )
-    const {user_id} = req.body
-    const posts = await db.getNoUserPosts({user_id}).then((data) => { 
-        res.status(200).send(data)
-    })
 }
+
+
 }
