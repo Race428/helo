@@ -22,9 +22,9 @@ class Dashboard extends Component {
     // }
 
 
-    async componentDidMount() {
+    componentDidMount() {
         console.log(this.props.match)
-        await axios.get('/getposts').then(res => {
+       axios.get('/getposts').then(res => {
             this.setState({
                 posts: res.data
             })

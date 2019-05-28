@@ -20,7 +20,7 @@ Login: async (req, res) => {
         res.status(200).send(data[0])})
 },
 
-getPosts: async (req, res) => { 
+getPosts: (req, res) => { 
     const db = req.app.get('db')
     db.getAllPosts().then((data) => { 
         console.log('this is the data',data)
