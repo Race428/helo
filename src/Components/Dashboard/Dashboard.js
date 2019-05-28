@@ -28,25 +28,8 @@ class Dashboard extends Component {
             })
         })
     }
-    // if (this.state.myPostsChecked === false) {
-    //     const { user_id } = this.state
-    //    await  axios.get('/getnouserposts', { user_id }).then(res => {
-    //         this.setState({
-    //             posts: res.data
-    //         })
-    //     })
-    // }
-
-    // else {
-    //     if (this.state.myPostsChecked === true) {
-    //         await  axios.get('/getposts').then(res => {
-    //             this.setState({
-    //                 posts: res.data
-    //             })
-    //         })
-    //     }
-    // }
-
+  
+    
 
     myPostsChecked = () => {
         this.setState({
@@ -54,21 +37,7 @@ class Dashboard extends Component {
         })
 
 
-        // if (this.state.myPostsChecked === true) {
-        //      axios.get('/getposts').then(res => {
-        //         this.setState({
-        //             posts: res.data
-        //         })
-        //     })
-        // }
-        // else {
-        //     const { user_id } = this.state
-        //      axios.get('getnouserposts', { user_id }).then(res => {
-        //         this.setState({
-        //             posts: res.data
-        //         })
-        //     })
-        // }
+      
     }
 
 
@@ -89,8 +58,8 @@ class Dashboard extends Component {
             }).map((element) => {
                 return <div
                     key={element.id}>
-                    {/* <img src={`${element.posts.profile_pic}`} alt='profile' /> */}
-                    <h1>{element.username}</h1>
+                     <img src={`${element.profile_pic}`} alt='profile' />                    
+                    <h1>{element.profile_pic}</h1>
                     <h1>{element.title}</h1>
 
                 </div>
@@ -105,7 +74,7 @@ class Dashboard extends Component {
                 if(element.author_id !== this.state.user_id){
                 return <div
                     key={element.id}>
-                    {/* <img src={`${element.posts.profile_pic}`} alt='profile' /> */}
+                     <img src={`${element.profile_pic}`} alt='profile' />
                     <h1>{element.username}</h1>
                     <h1>{element.title}</h1>
 

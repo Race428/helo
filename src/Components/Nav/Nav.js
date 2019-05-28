@@ -29,7 +29,7 @@ class Nav extends Component {
 
             <div>
                 <h1>{this.props.userObj.username}</h1>
-                <h1>{this.props.userObj.profile_pic}</h1>
+                <img src ={`${this.props.userObj.profile_pic}`} alt = 'profile' /> 
 
 
 
