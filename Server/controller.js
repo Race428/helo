@@ -26,6 +26,15 @@ getPosts: (req, res) => {
         console.log('this is the data',data)
         res.status(200).send(data)
     })
+},
+getSelectedPost: (req, res) => { 
+    const db = req.app.get('db')
+    const {post_id} = req.params
+    console.log('fuuunn',req.params)
+    db.getSinglePost({post_id: +post_id}).then((data) => { 
+        console.log('tee hee', data)
+        res.status(200).send(data)
+    })
 }
 
 
