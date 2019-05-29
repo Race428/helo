@@ -44,7 +44,7 @@ app.get('/getposts', ctrl.getPosts)
 app.get('/getselectedpost/:post_id', ctrl.getSelectedPost)
 app.post('/create/post', ctrl.createPost)
 app.post('/logout', ctrl.logout)
-app.get('/checkSession',ctrl.sessionCheck)
+app.get('/api/auth/me',ctrl.authMe)
 
 
 

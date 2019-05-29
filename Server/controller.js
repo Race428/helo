@@ -65,9 +65,14 @@ logout: (req, res) =>  {
     console.log('this is destroyed session', req.session)
 },
 
-sessionCheck(req, res) {
+authMe(req, res) {
     console.log('this is req.session serverside', req.session.client)
-    res.status(200).send(req.session.client)
+    const {user_id} = req.session
+    const db = req.app.get('db')
+    db.authMe({user_id}).then((data) => { 
+console.log('this pizza is great', data)
+        res.status(200).send(data)
+    })
 
   },
 

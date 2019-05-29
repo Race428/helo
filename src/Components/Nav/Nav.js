@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+// import {updateUserDetails} from '../../Redux/reducer'
 
 import '../Dashboard/Dashboard.css'
 import axios from 'axios';
 class Nav extends Component {
 
 
+async componentDidMount(){
+   await axios.get('/api/auth/me').then(res => { 
+       this.props.updateUserDetails(res.data)
 
+   })
+
+}
     constructor(props) {
         super(props)
         this.state = {
