@@ -45,6 +45,7 @@ app.get('/getselectedpost/:post_id', ctrl.getSelectedPost)
 app.post('/create/post', ctrl.createPost)
 app.post('/logout', ctrl.logout)
 app.get('/api/auth/me',ctrl.authMe)
+app.put('/post/edit/:post_id', ctrl.editPost)
 
 
 

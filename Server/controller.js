@@ -7,9 +7,9 @@ Register:  async (req, res) => {
     const {session} = req
     const users =  await db.register({username, password, profile_pic})
 
-        req.session.user_id = users[0].user_id
-        console.log('this is the session', req.session.user_id)
-        res.send(req.session.user_id)
+        session.user_id = users[0].user_id
+        console.log('this is the session', session.user_id)
+        res.send(session.user_id)
       
 
   
@@ -76,4 +76,19 @@ console.log('this pizza is great', data[0])
 
   },
 
+
+  editPost:  async (req, res) =>  {
+      const db = req.app.get('db')
+      const {post_id} = req.params 
+      const { title, content }= req.body
+      console.log('this is cod', req.params)
+      console.log('this is cod', req.body)
+      const img = JSON.stringify(req.body.img)
+      console.log('this is cool dog', img)
+    await db.updatePost({title, img, content, post_id})
+console.log('whoo hooo')
+  }
 }
+
+
+

@@ -21,7 +21,7 @@ export function updateUserDetails(userObj) {
 
   
 
-function Reducer(state = initialState, action) {
+function reducer(state = initialState, action) {
 console.log(action.payload)
     switch (action.type) {
      
@@ -33,4 +33,4 @@ console.log(action.payload)
 }
 
 
-export default Reducer
+export default reducer
