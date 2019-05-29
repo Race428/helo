@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import './Dashboard.css'
 import {Link} from 'react-router-dom'
 
-class Dashboard extends Component {
+export default class Dashboard extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             myPostsChecked: true,
             posts: [],
-            user_id: props.userObj.user_id,
+            user_id: '',
             search: ''
         }
     }
@@ -23,11 +23,13 @@ class Dashboard extends Component {
 
 
     componentDidMount() {
-        console.log(this.props.match)
+        
        axios.get('/getposts').then(res => {
             this.setState({
-                posts: res.data
+                posts: res.data.data,
+                user_id: res.data.user_id
             })
+            console.log(res)
         })
     }
   
@@ -114,12 +116,3 @@ class Dashboard extends Component {
 }
 
 
-const mapStateToProps = (reduxState) => {
-    console.log(reduxState)
-    const { userObj } = reduxState
-    console.log(typeof userObj)
-    return {
-        userObj
-    }
-}
-export default connect(mapStateToProps)(Dashboard)

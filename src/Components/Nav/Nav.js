@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
 import '../Dashboard/Dashboard.css'
+import axios from 'axios';
 class Nav extends Component {
 
 
@@ -16,6 +17,10 @@ class Nav extends Component {
     }
 
   
+
+    logout(){
+        axios.post('/logout')
+    }
 
     render() {
 
@@ -46,7 +51,9 @@ class Nav extends Component {
                 </Link>
 
                 <Link to='/'>
-                    <button>Logout</button>
+                    <button
+                    onClick={this.logout}
+                    >Logout</button>
                 </Link>
 
 

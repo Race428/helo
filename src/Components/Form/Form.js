@@ -12,7 +12,7 @@ constructor(props){
         title: '',
         image:'',
         content: '',
-        author_id: props.userObj.user_id
+
     }
 }
 
@@ -21,7 +21,7 @@ constructor(props){
             title: this.state.title,
             image: this.state.image,
             content: this.state.content,
-            author_id: this.state.author_id
+        
         })
 
         this.props.history.push('/dashboard')
