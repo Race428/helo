@@ -70,8 +70,8 @@ authMe(req, res) {
     const {user_id} = req.session
     const db = req.app.get('db')
     db.authMe({user_id}).then((data) => { 
-console.log('this pizza is great', data)
-        res.status(200).send(data)
+console.log('this pizza is great', data[0])
+        res.status(200).send(data[0])
     })
 
   },

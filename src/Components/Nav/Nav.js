@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-// import {updateUserDetails} from '../../Redux/reducer'
+import {updateUserDetails} from '../../Redux/reducer'
 
 import '../Dashboard/Dashboard.css'
 import axios from 'axios';
 class Nav extends Component {
 
 
-async componentDidMount(){
-   await axios.get('/api/auth/me').then(res => { 
+ componentDidMount(){
+   axios.get('/api/auth/me').then(res => {
+       console.log(res.data) 
        this.props.updateUserDetails(res.data)
 
    })
-
+console.log('this is goods')
 }
     constructor(props) {
         super(props)
@@ -78,6 +79,6 @@ const mapStateToProps = (reduxState) => {
     userObj
   }
 }
-export default connect(mapStateToProps)(withRouter(Nav))
+export default connect(mapStateToProps,{updateUserDetails})(withRouter(Nav))
 
 

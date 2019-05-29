@@ -1,2 +1,2 @@
 select * from users 
-where user_idd = ${user_id}
+where user_id = ${user_id}
