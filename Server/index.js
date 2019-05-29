@@ -5,15 +5,25 @@ require('dotenv').config()
 
 const app = express()
 
+const session =require('express-session')
+
 const massive = require('massive')
 
 const port = 4321
 
 const ctrl = require('./controller')
-const { CONNECTION_STRING , SERVER_PORT } = process.env
+const { CONNECTION_STRING , SERVER_PORT, SESSION_SECRET } = process.env
 
 
 app.use(express.json())
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}))
 
 app.listen(SERVER_PORT, () => {
     console.log('Listening on ', SERVER_PORT)
@@ -32,7 +42,7 @@ app.post('/auth/register', ctrl.Register)
 app.post('/auth/login', ctrl.Login)
 app.get('/getposts', ctrl.getPosts)
 app.get('/getselectedpost/:post_id', ctrl.getSelectedPost)
-
+app.post('/create/post', ctrl.createPost)
 
 
 
