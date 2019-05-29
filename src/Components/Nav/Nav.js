@@ -26,8 +26,10 @@ console.log('this is goods')
 
   
 
-    logout(){
-        axios.post('/logout')
+    logout = ()=> {
+        axios.post('/logout').then((res) => { 
+            this.props.updateUserDetails(res.data)
+        })
     }
 
     render() {
